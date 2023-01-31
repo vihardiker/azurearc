@@ -15,20 +15,16 @@ jobs:
     
 
     steps:
-    - name: AzureCLI@2
-      displayName: Connect AzCLI
-      scriptLocation: inlineScript
-      scriptType: ps
-      inlineScript: |
-        az --version 
-      # Register the Arc resource providers
-        az provider register --namespace Microsoft.Kubernetes
-        az provider register --namespace Microsoft.KubernetesConfiguration
-        az provider register --namespace Microsoft.ExtendedLocation
-      #  Install the az CLI extensions
-        az extension add --name k8s-extension
-        az extension add --name connectedk8s
-        az extension add --name k8s-configuration
-        az extension add --name customlocation
-        az extension add --name arcdata
-      
+    # Checkout code from repo
+    - name: checkout repo
+      uses: actions/checkout@v1
+
+    # Run powershell script to create VM
+    - name: RunPowershellScriptFromRepo
+      env: #Set secrets as environment variables
+        SP_CLIENT_ID: ${{ secrets.SP_CLIENT_ID }}
+        SP_CLIENT_SECRET: ${{ secrets.SP_CLIENT_SECRET }}
+        SP_TENANT_ID: ${{ secrets.SP_TENANT_ID }}
+        AZURE_SUBSCRIPTION_NAME: ${{ secrets.AZURE_SUBSCRIPTION_NAME }}
+      run: .\providersandextensions.ps1
+      shell: pwsh
