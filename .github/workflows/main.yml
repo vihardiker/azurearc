@@ -1,23 +1,43 @@
-on: [workflow_dispatch]
+name: 'Azure Arc Workflow'
 
-name: DeployAzureVM
+on:
+  push:
+    branches: 
+    - main 
+  pull_request:
+permissions:
+  contents: read
 
 jobs:
-
-  CreateAzureVM:
+  job1:
+    name: 'ProvidersAndExtensions'
     runs-on: windows-latest
-    
-    steps:
-    # Checkout code from repo
-    - name: checkout repo
-      uses: actions/checkout@v1
+  
+  steps:
+  - task: AzureCLI@2
+    displayName: "Connect AzCLI"
+    inputs:
+    #connectedServiceNameARM: "DEERE-SQL-AzureARC-DEV"
+    ##connectedServiceNameARM: "Azure_Cloud_SQL_Server_Principle_DEV"
+    # Provide the location of the script to run
+    scriptLocation: inlineScript
+    scriptType: ps
+    inlineScript: | 
+      az --version 
+    # Register the Arc resource prividers
+      az provider register --namespace Microsoft.Kubernetes
+      az provider register --namespace Microsoft.KubernetesConfiguration
+      az provider register --namespace Microsoft.ExtendedLocation
+    # Install the az CLI extensions
+      az extension add --name k8s-extension
+      az extension add --name connectedk8s
+      az extension add --name k8s-configuration
+      az extension add --name customlocation
+      az extension add --name arcdata
 
-    # Run powershell script to create VM
-    - name: RunPowershellScriptFromRepo
-      env: #Set secrets as environment variables
-        SP_CLIENT_ID: ${{ secrets.SP_CLIENT_ID }}
-        SP_CLIENT_SECRET: ${{ secrets.SP_CLIENT_SECRET }}
-        SP_TENANT_ID: ${{ secrets.SP_TENANT_ID }}
-        AZURE_SUBSCRIPTION_NAME: ${{ secrets.AZURE_SUBSCRIPTION_NAME }}
-      run: .\powershell_script\create-vm-azure.ps1
-      shell: pwsh
+ 
+       
+
+  
+        
+      
