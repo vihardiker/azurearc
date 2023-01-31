@@ -27,4 +27,4 @@ jobs:
         ARC_SP_TENANT_ID: ${{ secrets.ARC_SP_TENANT_ID }}
         ARC_AZURE_SUBSCRIPTION_ID: ${{ secrets.ARC_AZURE_SUBSCRIPTION_ID }}
       run: .\providersandextensions.sh
-      shell: pwsh
+      shell: bash
