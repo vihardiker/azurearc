@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   
-  ProvidersAndExtensions
+  ProvidersAndExtensions:
     runs-on: windows-latest
     
 
