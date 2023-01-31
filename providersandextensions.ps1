@@ -4,18 +4,27 @@ az login --service-principal --username $Env:ARC_SP_CLIENT_ID --password $Env:AR
 Write-Output "Done logging into Azure"
 
 # Select Azure subscription
+Write-Output "Setting Azure Subscription"
 az account set --subscription $Env:ARC_AZURE_SUBSCRIPTION_ID
+Write-Output "Done Setting Azure Subscription"
 
 # Get az version
+Write-Output "Checking Az Version"
 az --version 
+Write-Output "Done Checking Az Version"
 
 # Register the Arc resource providers
+Write-Output "Registering Providers"
   az provider register --namespace Microsoft.Kubernetes
   az provider register --namespace Microsoft.KubernetesConfiguration
   az provider register --namespace Microsoft.ExtendedLocation
+Write-Output "Done Registering Providers"
+
 #  Install the az CLI extensions
+Write-Output "Adding Extensions"
   az extension add --name k8s-extension
   az extension add --name connectedk8s
   az extension add --name k8s-configuration
   az extension add --name customlocation
   az extension add --name arcdata
+Write-Output "Done Adding Extensions"

@@ -25,6 +25,6 @@ jobs:
         ARC_SP_CLIENT_ID: ${{ secrets.ARC_SP_CLIENT_ID }}
         ARC_SP_CLIENT_SECRET: ${{ secrets.ARC_SP_CLIENT_SECRET }}
         ARC_SP_TENANT_ID: ${{ secrets.ARC_SP_TENANT_ID }}
-        ARC_AZURE_SUBSCRIPTION_NAME: ${{ secrets.ARC_AZURE_SUBSCRIPTION_ID }}
+        ARC_AZURE_SUBSCRIPTION_ID: ${{ secrets.ARC_AZURE_SUBSCRIPTION_ID }}
       run: .\providersandextensions.ps1
       shell: pwsh
