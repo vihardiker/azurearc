@@ -1,5 +1,5 @@
 # Parameters
-$RESOURCEGROUPNAME = "rg-aks-lab"
+$RESOURCEGROUPNAME = "rg-aks-lab1"
 $LOCATION = "eastus"
 
 # Login to Azure using Service Principal credentials from Github Secrets
@@ -35,7 +35,7 @@ Write-Output "Done Adding Extensions"
 
 # Check to see if the Resource Group exists or not. If it does not exist create one
 Write-Output "Checking for RG"
-$rsgExists = az group exists -n $RESOURCEGROUPNAME
+$rsgExists = az group exists --name $RESOURCEGROUPNAME
 if ($rsgExists -eq 'false') {
     az group create --name $RESOURCEGROUPNAME --location $LOCATION
 }
