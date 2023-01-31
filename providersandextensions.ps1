@@ -1,5 +1,5 @@
 # Parameters
-$RESOURCEGROUPNAME = "rg-aks-lab1"
+$RESOURCEGROUPNAME = "rg-aks-lab2"
 $LOCATION = "eastus"
 
 # Login to Azure using Service Principal credentials from Github Secrets
