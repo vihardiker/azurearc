@@ -13,27 +13,27 @@ jobs:
     name: 'ProvidersAndExtensions'
     runs-on: windows-latest
   
-  steps:
-  - task: AzureCLI@2
-    displayName: "Connect AzCLI"
-    inputs:
-    #connectedServiceNameARM: "DEERE-SQL-AzureARC-DEV"
-    ##connectedServiceNameARM: "Azure_Cloud_SQL_Server_Principle_DEV"
-    # Provide the location of the script to run
-    scriptLocation: inlineScript
-    scriptType: ps
-    inlineScript: | 
-      az --version 
-    # Register the Arc resource prividers
-      az provider register --namespace Microsoft.Kubernetes
-      az provider register --namespace Microsoft.KubernetesConfiguration
-      az provider register --namespace Microsoft.ExtendedLocation
-    # Install the az CLI extensions
-      az extension add --name k8s-extension
-      az extension add --name connectedk8s
-      az extension add --name k8s-configuration
-      az extension add --name customlocation
-      az extension add --name arcdata
+    steps:
+    - task: AzureCLI@2
+      displayName: "Connect AzCLI"
+      inputs:
+      #connectedServiceNameARM: "DEERE-SQL-AzureARC-DEV"
+      ##connectedServiceNameARM: "Azure_Cloud_SQL_Server_Principle_DEV"
+      # Provide the location of the script to run
+      scriptLocation: inlineScript
+      scriptType: ps
+      inlineScript: | 
+        az --version 
+      # Register the Arc resource prividers
+        az provider register --namespace Microsoft.Kubernetes
+        az provider register --namespace Microsoft.KubernetesConfiguration
+        az provider register --namespace Microsoft.ExtendedLocation
+      # Install the az CLI extensions
+        az extension add --name k8s-extension
+        az extension add --name connectedk8s
+        az extension add --name k8s-configuration
+        az extension add --name customlocation
+        az extension add --name arcdata
 
  
        
