@@ -15,16 +15,13 @@ jobs:
     
 
     steps:
-    # Checkout code from repo
-    - name: checkout repo
-      uses: actions/checkout@v1
 
     # Run powershell script to create VM
     - name: AzureCLI@2
-        displayName: Connect AzCLI
-        scriptLocation: inlineScript
-        scriptType: ps
-        inlineScript: |
+      displayName: Connect AzCLI
+      scriptLocation: inlineScript
+      scriptType: ps
+      inlineScript: |
           az --version 
         # Register the Arc resource providers
           az provider register --namespace Microsoft.Kubernetes
