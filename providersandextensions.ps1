@@ -1,3 +1,7 @@
+# Parameters
+RESOURCEGROUPNAME = "rg-aks-lab"
+LOCATION = "eastus"
+
 # Login to Azure using Service Principal credentials from Github Secrets
 Write-Output "Logging in to Azure with a service principal..."
 az login --service-principal --username $Env:ARC_SP_CLIENT_ID --password $Env:ARC_SP_CLIENT_SECRET --tenant $Env:ARC_SP_TENANT_ID
@@ -28,3 +32,11 @@ Write-Output "Adding Extensions"
   az extension add --name customlocation
   az extension add --name arcdata
 Write-Output "Done Adding Extensions"
+
+# Check to see if the Resource Group exists or not. If it does not exist create one
+Write-Output "Checking for RG"
+$rsgExists = az group exists -n $RESOURCEGROUPNAME
+if ($rsgExists -eq 'false') {
+    az group create --name $RESOURCEGROUPNAME --location $LOCATION
+}
+Write-Output "Done Checking for and creating RG"
