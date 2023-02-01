@@ -14,17 +14,16 @@ permissions:
 
 jobs:
 
-  #variables:
-  #  - template: .\pipeline.variables.yaml 
+  variables:
+    - template: .\pipeline.variables.yaml 
 
 
   ProvidersAndExtensions:
     runs-on: windows-latest
     
     
-    variables:
-    - template: .\pipeline.variables.yaml 
     
+
     steps:
     # Checkout code from repo
     - name: checkout repo
