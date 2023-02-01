@@ -11,11 +11,12 @@ on:
 permissions:
   contents: read
 
-vars:
-- template: .\pipeline.variables.yml  # Template reference
 
 jobs:
-  
+
+  variables:
+    - template: .\pipeline.variables.yml  # Template reference
+
   ProvidersAndExtensions:
     runs-on: windows-latest
     
