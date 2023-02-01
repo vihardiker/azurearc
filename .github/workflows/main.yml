@@ -22,7 +22,7 @@ jobs:
     - name: RunScriptToReadParameters
       run: |
         .\readParameters.ps1 
-        echo "resourceGroup: $resourceGroup"
+        echo "resourceGroup: ${{resourceGroup}}"
       shell: pwsh
 
 
