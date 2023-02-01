@@ -20,7 +20,6 @@ jobs:
 
     - name: RunScriptToReadParameters
       run: .\readParameters.ps1
-      echo: 
       shell: pwsh
 
     # Run powershell script to create VM

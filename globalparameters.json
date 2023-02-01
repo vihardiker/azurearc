@@ -1,0 +1,12 @@
+{
+  "resourceGroup": "azure-arc-sandbox-rg",
+  "dataControllername": "azsde90dc-02",
+  "adConnectorname": "azsde90addc-02",
+  "sqlManagedInstanceName": "azsde90sql02-01",
+  "sqlAccountName": "azsde90sql02-1",
+  "PortNumber": "1433",
+  "CustomLocationName": "azsde90cusloc-02",
+  "AZDATA_USERNAME": "globalsqladmin",
+  "AZDATA_PASSWORD": "G1oba15q1@dmin",
+  "ACCEPT_EULA":"Yes"
+}
