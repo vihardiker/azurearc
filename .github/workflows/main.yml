@@ -1,7 +1,5 @@
 name: Azure Arc Workflow
 
-variables:
-  - template: .\pipeline.variables.yml
 
 on:
   push:
@@ -19,6 +17,8 @@ jobs:
   
   ProvidersAndExtensions:
     runs-on: windows-latest
+    variables:
+    - template: .\pipeline.variables.yml
 
     steps:
     # Checkout code from repo
