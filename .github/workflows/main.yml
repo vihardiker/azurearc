@@ -15,7 +15,7 @@ permissions:
 jobs:
 
   variables:
-      - template: .\variables.yaml 
+    template: .\variables.yaml 
 
 
   ProvidersAndExtensions:
