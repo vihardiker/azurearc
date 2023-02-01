@@ -1,4 +1,3 @@
----
 name: Azure Arc Workflow
 on:
   push:
@@ -19,8 +18,13 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v1
 
+    - name: RunScriptToReadParameters
+      run: .\readParameters.ps1
+      echo: 
+      shell: pwsh
+
     # Run powershell script to create VM
-    - name: RunPowershellScriptFromRepo
+    - name: RunScriptFromRepo
       env: #Set secrets as environment variables
         ARC_SP_CLIENT_ID: ${{ secrets.ARC_SP_CLIENT_ID }}
         ARC_SP_CLIENT_SECRET: ${{ secrets.ARC_SP_CLIENT_SECRET }}
