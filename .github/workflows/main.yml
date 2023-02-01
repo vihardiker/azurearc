@@ -15,7 +15,7 @@ permissions:
 jobs:
 
   variables:
-  - template: pipeline.variables.yaml 
+  - template: .\variables.yaml 
 
 
   ProvidersAndExtensions:
