@@ -1,6 +1,6 @@
 # Parameters
-$RESOURCEGROUPNAME = "rg-aks-lab2"
-$LOCATION = "eastus"
+$RESOURCEGROUPNAME = $Env:resourceGroup
+$LOCATION = $Env:location
 
 # Login to Azure using Service Principal credentials from Github Secrets
 Write-Output "Logging in to Azure with a service principal..."

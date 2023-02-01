@@ -7,6 +7,9 @@ on:
 permissions:
   contents: read
 
+variables:
+- template: .\pipeline.variables.yml
+
 jobs:
   
   ProvidersAndExtensions:
@@ -18,13 +21,6 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v1
 
-    # Read the parameters file
-    - name: RunScriptToReadParameters
-      run: |
-        .\readParameters.ps1 
-        echo "resourceGroup:" ${{resourceGroup}}
-      shell: pwsh
-
 
     # Run powershell script to create VM
     - name: RunScriptFromRepo
@@ -33,5 +29,16 @@ jobs:
         ARC_SP_CLIENT_SECRET: ${{ secrets.ARC_SP_CLIENT_SECRET }}
         ARC_SP_TENANT_ID: ${{ secrets.ARC_SP_TENANT_ID }}
         ARC_AZURE_SUBSCRIPTION_ID: ${{ secrets.ARC_AZURE_SUBSCRIPTION_ID }}
+        resourceGroup: $(resourceGroup)
+        dataControllername: $(dataControllername)
+        adConnectorname: $(adConnectorname)
+        sqlManagedInstanceName: $(sqlManagedInstanceName)
+        sqlAccountName: $(sqlAccountName)
+        PortNumber: $(PortNumber)
+        CustomLocationName: $(CustomLocationName)
+        AZDATA_USERNAME: $(AZDATA_USERNAME)
+        AZDATA_PASSWORD: $(AZDATA_PASSWORD)
+        ACCEPT_EULA: $(ACCEPT_EULA)
+        location: $(location)
       run: .\providersandextensions.ps1
       shell: pwsh
