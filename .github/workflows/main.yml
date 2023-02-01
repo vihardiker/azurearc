@@ -15,7 +15,7 @@ permissions:
 jobs:
 
   variables:
-  - template: .\pipeline.variables.yml  # Template reference
+    - template: .\pipeline.variables.yml 
 
   ProvidersAndExtensions:
     runs-on: windows-latest
