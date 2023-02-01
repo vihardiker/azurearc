@@ -1,21 +1,24 @@
 name: Azure Arc Workflow
+
+variables:
+  - template: .\pipeline.variables.yml
+
 on:
   push:
     branches:
       - main
   pull_request: null
+
 permissions:
   contents: read
 
-variables:
-- template: .\pipeline.variables.yml
+
 
 
 jobs:
   
   ProvidersAndExtensions:
     runs-on: windows-latest
-    
 
     steps:
     # Checkout code from repo
