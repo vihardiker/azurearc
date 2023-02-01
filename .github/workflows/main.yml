@@ -1,26 +1,27 @@
 name: Azure Arc Workflow
 
+
 on:
   push:
     branches:
       - main
   pull_request: null
 
+
 permissions:
   contents: read
 
-variables:
-  - template: .\variables.yaml 
-
-
-ProvidersAndExtensions:
-  runs-on: windows-latest
-    
 
 jobs:
-  
+
+  variables:
+    - template: pipeline.variables.yml 
+
+
   ProvidersAndExtensions:
     runs-on: windows-latest
+    
+    
 
     steps:
     # Checkout code from repo
@@ -28,7 +29,7 @@ jobs:
       uses: actions/checkout@v1
 
 
-    # Run powershell script to create VM
+    # Run script
     - name: RunScriptFromRepo
       env: #Set secrets as environment variables
         ARC_SP_CLIENT_ID: ${{ secrets.ARC_SP_CLIENT_ID }}
