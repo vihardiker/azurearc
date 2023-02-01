@@ -7,19 +7,20 @@ on:
       - main
   pull_request: null
 
-variables:
-- template: .\pipeline.variables.yml
 
 permissions:
   contents: read
 
 
-
+variables:
+  - template: .\pipeline.variables.yml
 
 jobs:
   
   ProvidersAndExtensions:
     runs-on: windows-latest
+    
+    
 
     steps:
     # Checkout code from repo
