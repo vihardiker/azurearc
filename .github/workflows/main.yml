@@ -23,29 +23,30 @@ ProvidersAndExtensions:
 jobs:    
 
   steps:
-  # Checkout code from repo
-  - name: checkout repo
-    uses: actions/checkout@v1
+    # Checkout code from repo
+    - name: checkout repo
+      uses: actions/checkout@v1
 
 
 
-  # Run script
-  - name: RunScriptFromRepo
-    env: #Set secrets as environment variables
-      ARC_SP_CLIENT_ID: ${{ secrets.ARC_SP_CLIENT_ID }}
-      ARC_SP_CLIENT_SECRET: ${{ secrets.ARC_SP_CLIENT_SECRET }}
-      ARC_SP_TENANT_ID: ${{ secrets.ARC_SP_TENANT_ID }}
-      ARC_AZURE_SUBSCRIPTION_ID: ${{ secrets.ARC_AZURE_SUBSCRIPTION_ID }}
-      resourceGroup: ${{variables.resourceGroup}}
-      dataControllername: ${{variables.dataControllername}}
-      adConnectorname: ${{variables.adConnectorname}}
-      sqlManagedInstanceName: ${{variables.sqlManagedInstanceName}}
-      sqlAccountName: ${{variables.sqlAccountName}}
-      PortNumber: ${{variables.PortNumber}}
-      CustomLocationName: ${{variables.CustomLocationName}}
-      AZDATA_USERNAME: ${{variables.AZDATA_USERNAME}}
-      AZDATA_PASSWORD: ${{variables.AZDATA_PASSWORD}}
-      ACCEPT_EULA: ${{variables.ACCEPT_EULA}}
-      location: ${{variables.location}}
-    run: .\providersandextensions.ps1
-    shell: pwsh
+
+    # Run script
+    - name: RunScriptFromRepo
+      env: #Set secrets as environment variables
+        ARC_SP_CLIENT_ID: ${{ secrets.ARC_SP_CLIENT_ID }}
+        ARC_SP_CLIENT_SECRET: ${{ secrets.ARC_SP_CLIENT_SECRET }}
+        ARC_SP_TENANT_ID: ${{ secrets.ARC_SP_TENANT_ID }}
+        ARC_AZURE_SUBSCRIPTION_ID: ${{ secrets.ARC_AZURE_SUBSCRIPTION_ID }}
+        resourceGroup: ${{variables.resourceGroup}}
+        dataControllername: ${{variables.dataControllername}}
+        adConnectorname: ${{variables.adConnectorname}}
+        sqlManagedInstanceName: ${{variables.sqlManagedInstanceName}}
+        sqlAccountName: ${{variables.sqlAccountName}}
+        PortNumber: ${{variables.PortNumber}}
+        CustomLocationName: ${{variables.CustomLocationName}}
+        AZDATA_USERNAME: ${{variables.AZDATA_USERNAME}}
+        AZDATA_PASSWORD: ${{variables.AZDATA_PASSWORD}}
+        ACCEPT_EULA: ${{variables.ACCEPT_EULA}}
+        location: ${{variables.location}}
+      run: .\providersandextensions.ps1
+      shell: pwsh
