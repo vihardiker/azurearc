@@ -1,5 +1,13 @@
 name: Azure Arc Workflow
 
+on:
+  push:
+    branches:
+      - main
+  pull_request: null
+
+permissions:
+  contents: read
 
 variables:
   - template: .\variables.yaml 
