@@ -11,7 +11,7 @@ on:
 permissions:
   contents: read
 
-variables:
+vars:
 - template: .\pipeline.variables.yml  # Template reference
 
 jobs:
