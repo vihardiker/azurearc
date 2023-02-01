@@ -10,6 +10,7 @@ permissions:
 variables:
 - template: .\pipeline.variables.yml
 
+
 jobs:
   
   ProvidersAndExtensions:
