@@ -19,18 +19,19 @@ variables:
 ProvidersAndExtensions:
   runs-on: windows-latest
     
-    
-jobs:    
 
-  steps:
+jobs:
+  
+  ProvidersAndExtensions:
+    runs-on: windows-latest
+
+    steps:
     # Checkout code from repo
     - name: checkout repo
       uses: actions/checkout@v1
 
 
-
-
-    # Run script
+    # Run powershell script to create VM
     - name: RunScriptFromRepo
       env: #Set secrets as environment variables
         ARC_SP_CLIENT_ID: ${{ secrets.ARC_SP_CLIENT_ID }}
