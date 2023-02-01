@@ -16,6 +16,7 @@ jobs:
 
   variables:
     - template: .\pipeline.variables.yml 
+    
 
   ProvidersAndExtensions:
     runs-on: windows-latest
