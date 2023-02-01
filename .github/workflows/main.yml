@@ -18,9 +18,13 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v1
 
+    # Read the parameters file
     - name: RunScriptToReadParameters
-      run: .\readParameters.ps1
+      run: |
+        .\readParameters.ps1 
+        echo "resourceGroup: $resourceGroup"
       shell: pwsh
+
 
     # Run powershell script to create VM
     - name: RunScriptFromRepo
