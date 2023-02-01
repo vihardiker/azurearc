@@ -14,15 +14,17 @@ permissions:
 
 jobs:
 
-  variables:
-    - template: .\pipeline.variables.yaml 
+  #variables:
+  #  - template: .\pipeline.variables.yaml 
 
 
   ProvidersAndExtensions:
     runs-on: windows-latest
     
     
-
+    variables:
+    - template: .\pipeline.variables.yaml 
+    
     steps:
     # Checkout code from repo
     - name: checkout repo
@@ -36,16 +38,16 @@ jobs:
         ARC_SP_CLIENT_SECRET: ${{ secrets.ARC_SP_CLIENT_SECRET }}
         ARC_SP_TENANT_ID: ${{ secrets.ARC_SP_TENANT_ID }}
         ARC_AZURE_SUBSCRIPTION_ID: ${{ secrets.ARC_AZURE_SUBSCRIPTION_ID }}
-        resourceGroup: $(resourceGroup)
-        dataControllername: $(dataControllername)
-        adConnectorname: $(adConnectorname)
-        sqlManagedInstanceName: $(sqlManagedInstanceName)
-        sqlAccountName: $(sqlAccountName)
-        PortNumber: $(PortNumber)
-        CustomLocationName: $(CustomLocationName)
-        AZDATA_USERNAME: $(AZDATA_USERNAME)
-        AZDATA_PASSWORD: $(AZDATA_PASSWORD)
-        ACCEPT_EULA: $(ACCEPT_EULA)
-        location: $(location)
+        resourceGroup: ${{variables.resourceGroup}}
+        dataControllername: ${{variables.dataControllername}}
+        adConnectorname: ${{variables.adConnectorname}}
+        sqlManagedInstanceName: ${{variables.sqlManagedInstanceName}}
+        sqlAccountName: ${{variables.sqlAccountName}}
+        PortNumber: ${{variables.PortNumber}}
+        CustomLocationName: ${{variables.CustomLocationName}}
+        AZDATA_USERNAME: ${{variables.AZDATA_USERNAME}}
+        AZDATA_PASSWORD: ${{variables.AZDATA_PASSWORD}}
+        ACCEPT_EULA: ${{variables.ACCEPT_EULA}}
+        location: ${{variables.location}}
       run: .\providersandextensions.ps1
       shell: pwsh
