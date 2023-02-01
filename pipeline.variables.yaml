@@ -1,3 +1,4 @@
+variables:
   resourceGroup: 'azure-arc-sandbox-rg'
   dataControllername: 'azsde90dc-02'
   adConnectorname: 'azsde90addc-02'
