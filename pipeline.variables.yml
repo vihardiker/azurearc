@@ -1,23 +1,11 @@
 variables:
-- name: resourceGroup
-  value: rg-aks-lab2 #azure-arc-sandbox-rg
-- name: dataControllername
-  value: azsde90dc-02
-- name: adConnectorname
-  value: azsde90addc-02
-- name: sqlManagedInstanceName
-  value: azsde90sql02-01
-- name: sqlAccountName
-  value: azsde90sql02-1
-- name: PortNumber
-  value: 1433
-- name: CustomLocationName
-  value: azsde90cusloc-02
-- name: AZDATA_USERNAME
-  value: globalsqladmin
-- name: AZDATA_PASSWORD
-  value: G1oba15q1@dmin
-- name: ACCEPT_EULA
-  value: Yes
-- name: location
-  value: eastus
+  resourceGroup: 'azure-arc-sandbox-rg'
+  dataControllername: 'azsde90dc-02'
+  adConnectorname: 'azsde90addc-02'
+  sqlManagedInstanceName: 'azsde90sql02-01'
+  sqlAccountName: 'azsde90sql02-1'
+  PortNumber: '1433'
+  CustomLocationName: 'azsde90cusloc-02'
+  AZDATA_USERNAME: 'globalsqladmin'
+  AZDATA_PASSWORD: 'G1oba15q1@dmin'
+  ACCEPT_EULA: 'Yes'

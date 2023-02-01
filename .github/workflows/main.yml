@@ -1,7 +1,5 @@
 name: Azure Arc Workflow
 
-variables:
-  - template: .\pipeline.variables.yml
 
 on:
   push:
@@ -13,6 +11,8 @@ on:
 permissions:
   contents: read
 
+variables:
+- template: .\pipeline.variables.yml  # Template reference
 
 jobs:
   
