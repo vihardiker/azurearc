@@ -14,8 +14,8 @@ jobs:
 
   steps:
   # Checkout code from repo
-  - name: checkout repo
-    uses: actions/checkout@v1
+  #- name: checkout repo
+  #  uses: actions/checkout@v1
 
 
   # Run script
