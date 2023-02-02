@@ -22,6 +22,8 @@ jobs:
     - name: setVarFromJsonFileValue
       run: |
        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)"
-       echo $(resourceGroupName) 
+       echo ${{resourceGroupName}}
+       echo $(resourceGroupName)
+       echo $resourceGroupName
       shell: bash
 
