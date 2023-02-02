@@ -1,6 +1,6 @@
 #############################################################
 # 1. Register necessary resource providers and add extensions
-# 2. Check and Create for RG
+# 2. Check and Create RG (if necessary)
 # 3. Check and Connect to cluster
 # 4. Enable Cluster for Azure ARC
 # 5. Create Custom Location
@@ -100,6 +100,6 @@ Write-Output "Done Creating Custom Location"
 # Create Data Controller
 ########################
 Write-Output "Create Data Controller"
-az arcdata dc create --name $DataControllerName --resource-group $RESOURCEGROUPNAME --location $LOCATION --connectivity-mode $CONNECTIVITYMODE --profile-name $PROFILENAME  --auto-upload-metrics $AUTOUPLOADMETRICS --custom-location $CLNAME --storage-class $STORAGECLASS 
+az arcdata dc create --name $DataControllerName --resource-group $RESOURCEGROUPNAME --location $LOCATION --connectivity-mode $CONNECTIVITYMODE --profile-name $PROFILENAME --auto-upload-metrics $AUTOUPLOADMETRICS --custom-location $CLNAME --storage-class $STORAGECLASS 
 Write-Output "Done Creating Data Controller"
 
