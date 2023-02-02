@@ -34,3 +34,16 @@ Write-Host "CustomLocationName: $CustomLocationName";
 Write-Host "AZDATA_USERNAME: $AZDATA_USERNAME";
 Write-Host "AZDATA_PASSWORD: $AZDATA_PASSWORD";
 Write-Host "ACCEPT_EULA: $ACCEPT_EULA";
+
+Write-Host "These are the outputs"
+
+Write-Output "resourceGroup: $resourceGroup";
+Write-Output "dataControllername: $dataControllername";
+Write-Output "adConnectorname: $adConnectorname";
+Write-Output "sqlManagedInstanceName: $sqlManagedInstanceName";
+Write-Output "sqlAccountName: $sqlAccountName";
+Write-Output "PortNumber: $PortNumber";
+Write-Output "CustomLocationName: $CustomLocationName";
+Write-Output "AZDATA_USERNAME: $AZDATA_USERNAME";
+Write-Output "AZDATA_PASSWORD: $AZDATA_PASSWORD";
+Write-Output "ACCEPT_EULA: $ACCEPT_EULA";
