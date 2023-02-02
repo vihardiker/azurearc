@@ -32,6 +32,6 @@ jobs:
 
     - name: newWayReadingFromJsonFileValue
       run: |
-        echo "PACKAGE_JSON=$(jq -c . < globalparameters.json)" >> $GITHUB_ENV
-        echo ${{ fromJson(env.PACKAGE_JSON).resourceGroupName }}
-        echo ${{ fromJson(env.PACKAGE_JSON).dataControllername }}
+        echo "MY_JSON_FILE=$(jq -c . < globalparameters.json)" >> $GITHUB_ENV
+        echo '${{ fromJson(env.MY_JSON_FILE).resourceGroupName }}'
+        echo '${{ fromJson(env.MY_JSON_FILE).dataControllername }}'
