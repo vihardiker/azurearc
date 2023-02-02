@@ -1,3 +1,12 @@
+#############################################################
+# 1. Register necessary resource providers and add extensions
+# 2. Check and Create for RG
+# 3. Check and Connect to cluster
+# 4. Enable Cluster for Azure ARC
+# 5. Create Custom Location
+# 6. Create Data Controller
+#############################################################
+
 # Parameters
 $RESOURCEGROUPNAME = $Env:resourceGroup
 $LOCATION = $Env:location

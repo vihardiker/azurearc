@@ -1,3 +1,7 @@
+###############
+# Create SQL MI
+###############
+
 # Parameters
 $RESOURCEGROUPNAME = $Env:resourceGroup
 $SQLMINAME = $Env:sqlminame
