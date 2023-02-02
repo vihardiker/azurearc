@@ -29,3 +29,9 @@ jobs:
        echo "resourceGroupName :"  $(resourceGroupName)
       shell: bash
 
+
+    - name: newWayReadingFromJsonFileValue
+      run: |
+        echo "PACKAGE_JSON=$(jq -c . < globalparameters.json)" >> $GITHUB_ENV
+        echo ${{ fromJson(env.PACKAGE_JSON).resourceGroupName }}
+        echo ${{ fromJson(env.PACKAGE_JSON).dataControllername }}
