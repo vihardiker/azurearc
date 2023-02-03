@@ -29,11 +29,19 @@ jobs:
         $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
         echo $myjsonfile
         echo $myjsonfile.PortNumber   
-        echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
-        echo "::set-env name=resourceGroupName1::$($myjsonfile.resourceGroupName)"
+    #   echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
+        echo "::set-env name=resourceGroupName::$($myjsonfile.resourceGroupName)"
+        echo "::set-env name=dataControllername::$($myjsonfile.dataControllername)"
+        echo "::set-env name=adConnectorname::$($myjsonfile.adConnectorname)"
+        echo "::set-env name=sqlManagedInstanceName::$($myjsonfile.sqlManagedInstanceName)"
+        echo "::set-env name=sqlAccountName::$($myjsonfile.sqlAccountName)"
+        echo "::set-env name=PortNumber::$($myjsonfile.PortNumber)"
+        echo "::set-env name=CustomLocationName::$($myjsonfile.CustomLocationName)"
+        echo "::set-env name=AZDATA_USERNAME::$($myjsonfile.AZDATA_USERNAME)"
+        echo "::set-env name=AZDATA_PASSWORD::$($myjsonfile.AZDATA_PASSWORD)"
+        echo "::set-env name=ACCEPT_EULA::$($myjsonfile.ACCEPT_EULA)"
       shell: pwsh
-      env:
-       resourceGroupName: xyz
+      
 
     # Read the parameters file
     - name: setVarFromJsonFileValue
@@ -42,5 +50,13 @@ jobs:
        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
        echo "my resourceGroupName: "
        echo ${{env.resourceGroupName}}
-       echo ${{env.resourceGroupName1}}
+       echo ${{env.dataControllername}}
+       echo ${{env.adConnectorname}}
+       echo ${{env.sqlManagedInstanceName}}
+       echo ${{env.sqlAccountName}}
+       echo ${{env.PortNumber}}
+       echo ${{env.CustomLocationName}}
+       echo ${{env.AZDATA_USERNAME}}
+       echo ${{env.AZDATA_PASSWORD}}
+       echo ${{env.ACCEPT_EULA}}
       shell: pwsh
