@@ -11,7 +11,7 @@ env:
 
 jobs: 
     
-  job1: 
+
     name: 'ProvidersAndExtensions'
       runs-on: windows-latest
       
@@ -25,14 +25,13 @@ jobs:
       # Read the parameters file
       - name: newSetVarFromJsonFileValue
         id: step_one
-        env:
-          newRG: 
         run: |
           $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
           echo $myjsonfile
-          echo $myjsonfile.PortNumber     
+          echo $myjsonfile.PortNumber   
+          export newRG=$myjsonfile.resourceGroupName 
+          echo "::set-env name=newRG::$newRG"
           echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
-          echo "newRG=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
           echo "flag set to true"
         shell: pwsh
 
@@ -43,6 +42,6 @@ jobs:
         echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
         echo "my resourceGroupName: "
         echo ${{env.resourceGroupName}}
-        echo ${{jobs.job1.steps.step_one.env.resourceGroupName}}
-        echo ${{jobs.job1.steps.step_one.env.newRG}}
+        echo ${{env.resourceGroupName}}
+        echo ${{env.newRG}}
         shell: pwsh
