@@ -30,7 +30,7 @@ jobs:
         $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
         echo $myjsonfile
         echo $myjsonfile.PortNumber   
-        echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
+        echo "resourceGroupName2=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
         echo "::set-env name=resourceGroupName1::$($myjsonfile.resourceGroupName)"
       shell: pwsh
 
@@ -42,4 +42,5 @@ jobs:
        echo "my resourceGroupName: "
        echo ${{env.resourceGroupName}}
        echo ${{env.resourceGroupName1}}
+       echo ${{env.resourceGroupName2}}
       shell: pwsh
