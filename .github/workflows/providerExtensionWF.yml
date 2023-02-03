@@ -23,8 +23,6 @@ jobs:
     
     # Read the parameters file
     - name: newSetVarFromJsonFileValue
-      env:
-        resourceGroupName1: 
       id: step_one
       run: |
         $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
@@ -41,6 +39,5 @@ jobs:
       run: |
        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
        echo "my resourceGroupName: "
-       echo ${{ env.resourceGroupName }}
-       echo ${{ env.resourceGroupName1 }}
+       echo $env.resourceGroupName
       shell: pwsh
