@@ -6,6 +6,8 @@ on:
   pull_request: null
 permissions:
   contents: read
+env:
+  resourceGroupName: xyz
 
 jobs:
   
@@ -22,8 +24,6 @@ jobs:
     # Read the parameters file
     - name: newSetVarFromJsonFileValue
       id: step_one
-      env:
-          COMMIT_VAR: ${{ contains(github.event.head_commit.message, '[commit var]') }}
       run: |
         $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
         echo $myjsonfile
@@ -39,4 +39,4 @@ jobs:
        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
        echo "my resourceGroupName: "
        echo ${{ env.resourceGroupName }}
-      shell: bash
+      shell: pwsh
