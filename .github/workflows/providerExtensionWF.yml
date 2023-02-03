@@ -28,6 +28,7 @@ jobs:
         echo $myjsonfile
         echo $myjsonfile.PortNumber     
         echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
+        echo "action_state=yellow" >> $GITHUB_ENV
       shell: pwsh
 
     # Read the parameters file
@@ -36,4 +37,5 @@ jobs:
        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
        echo "my resourceGroupName: "
        echo ${{ env.resourceGroupName }}
-      shell: pwsh
+       echo "action state :" ${{ env.action_state }}
+      shell: bash
