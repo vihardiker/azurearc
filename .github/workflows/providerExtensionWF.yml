@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 env:
-  resourceGroupName: xyz
+  resourceGroupName:  $myjsonfile.resourceGroupName
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
@@ -17,6 +17,7 @@ jobs:
     
 
     steps:
+      
     # Checkout code from repo
     - name: checkout repo
       uses: actions/checkout@v1
@@ -28,8 +29,9 @@ jobs:
       run: |
         $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
         echo $myjsonfile
-        echo $myjsonfile.PortNumber     
-        echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
+        echo $myjsonfile.PortNumber   
+        resourceGroupName1 = $myjsonfile.resourceGroupName  
+        echo "resourceGroupName1=$resourceGroupName1" >> $GITHUB_ENV  
         echo "::set-env name=resourceGroupName1::$myjsonfile.resourceGroupName"
         echo "flag set to true"
       shell: pwsh
