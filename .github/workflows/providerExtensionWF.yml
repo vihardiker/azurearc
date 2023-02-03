@@ -7,7 +7,6 @@ on:
 permissions:
   contents: read
 env:
-  resourceGroupName: xyz
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
