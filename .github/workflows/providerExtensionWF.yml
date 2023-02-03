@@ -28,13 +28,8 @@ jobs:
         $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
         echo $myjsonfile
         echo $myjsonfile.PortNumber     
-         if (${COMMIT_VAR} == true); then
-            echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
-            echo "flag set to true"
-          else
-             echo "action_state=yellow" >> $GITHUB_ENV
-            echo "flag set to false"
-          fi  
+        echo "resourceGroupName=$($myjsonfile.resourceGroupName)" >> $GITHUB_ENV  
+        echo "flag set to true"
       shell: pwsh
 
     # Read the parameters file
@@ -44,5 +39,4 @@ jobs:
        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
        echo "my resourceGroupName: "
        echo ${{ env.resourceGroupName }}
-       echo "action state :" ${{ env.action_state }}
       shell: bash
