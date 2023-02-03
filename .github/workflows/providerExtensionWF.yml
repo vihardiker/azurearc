@@ -21,6 +21,8 @@ jobs:
     
     # Read the parameters file
     - name: newSetVarFromJsonFileValue
+      env:
+        resourceGroupName: ""
       run: |
         $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
         echo $myjsonfile
