@@ -11,37 +11,36 @@ env:
 
 jobs: 
     
+    ProvidersAndExtensions:
+    runs-on: windows-latest
+    
 
-    name: 'ProvidersAndExtensions'
-      runs-on: windows-latest
-      
+    steps:
+    # Checkout code from repo
+    - name: checkout repo
+      uses: actions/checkout@v1
 
-      steps:
-      # Checkout code from repo
-      - name: checkout repo
-        uses: actions/checkout@v1
+    
+    # Read the parameters file
+    - name: newSetVarFromJsonFileValue
+      id: step_one
+      run: |
+        $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
+        echo $myjsonfile
+        echo $myjsonfile.PortNumber     
+        export newRG=$myjsonfile.resourceGroupName 
+        echo "::set-env name=newRG::$newRG"
+        echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
+        echo "flag set to true"
+      shell: pwsh
 
-      
       # Read the parameters file
-      - name: newSetVarFromJsonFileValue
-        id: step_one
-        run: |
-          $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
-          echo $myjsonfile
-          echo $myjsonfile.PortNumber   
-          export newRG=$myjsonfile.resourceGroupName 
-          echo "::set-env name=newRG::$newRG"
-          echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
-          echo "flag set to true"
-        shell: pwsh
-
-      # Read the parameters file
-      - name: setVarFromJsonFileValue
-        id: step_two
-        run: |
+    - name: setVarFromJsonFileValue
+      id: step_two
+      run: |
         echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
         echo "my resourceGroupName: "
         echo ${{env.resourceGroupName}}
         echo ${{env.resourceGroupName}}
         echo ${{env.newRG}}
-        shell: pwsh
+      shell: pwsh
