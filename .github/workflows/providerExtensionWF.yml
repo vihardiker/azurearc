@@ -9,40 +9,40 @@ permissions:
 env:
   resourceGroupName: xyz
 
-jobs:
- 
-  job1: 
-    name: 'ProvidersAndExtensions'
-      runs-on: windows-latest
+jobs: 
     
+    job1: 
+      name: 'ProvidersAndExtensions'
+        runs-on: windows-latest
+      
 
-    steps:
-    # Checkout code from repo
-    - name: checkout repo
-      uses: actions/checkout@v1
+      steps:
+      # Checkout code from repo
+      - name: checkout repo
+        uses: actions/checkout@v1
 
-    
-    # Read the parameters file
-    - name: newSetVarFromJsonFileValue
-      id: step_one
-      env:
-         newRG: 
-      run: |
-        $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
-        echo $myjsonfile
-        echo $myjsonfile.PortNumber     
-        echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
-        echo "newRG=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
-        echo "flag set to true"
-      shell: pwsh
+      
+      # Read the parameters file
+      - name: newSetVarFromJsonFileValue
+        id: step_one
+        env:
+          newRG: 
+        run: |
+          $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
+          echo $myjsonfile
+          echo $myjsonfile.PortNumber     
+          echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
+          echo "newRG=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
+          echo "flag set to true"
+        shell: pwsh
 
-    # Read the parameters file
-    - name: setVarFromJsonFileValue
-      id: step_two
-      run: |
-       echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
-       echo "my resourceGroupName: "
-       echo ${{env.resourceGroupName}}
-       echo ${{jobs.job1.steps.step_one.env.resourceGroupName}}
-       echo ${{jobs.job1.steps.step_one.env.newRG}}
-      shell: pwsh
+      # Read the parameters file
+      - name: setVarFromJsonFileValue
+        id: step_two
+        run: |
+        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
+        echo "my resourceGroupName: "
+        echo ${{env.resourceGroupName}}
+        echo ${{jobs.job1.steps.step_one.env.resourceGroupName}}
+        echo ${{jobs.job1.steps.step_one.env.newRG}}
+        shell: pwsh
