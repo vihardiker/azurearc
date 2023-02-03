@@ -10,6 +10,7 @@ env:
   resourceGroupName: xyz
 
 jobs:
+ 
   job1: 
     name: 'ProvidersAndExtensions'
       runs-on: windows-latest
