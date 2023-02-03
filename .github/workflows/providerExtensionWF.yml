@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 env:
-  resourceGroupName:  $myjsonfile.resourceGroupName
+  resourceGroupName:  ${{$myjsonfile.resourceGroupName}}
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
