@@ -7,7 +7,6 @@ on:
 permissions:
   contents: read
 env:
-  resourceGroupName: xyz
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
@@ -34,7 +33,7 @@ jobs:
         echo "::set-env name=resourceGroupName1::$($myjsonfile.resourceGroupName)"
       shell: pwsh
       env:
-        resourceGroupName2: ($myjsonfile.resourceGroupName)
+        resourceGroupName: ($myjsonfile.resourceGroupName)
 
     # Read the parameters file
     - name: setVarFromJsonFileValue
@@ -44,5 +43,4 @@ jobs:
        echo "my resourceGroupName: "
        echo ${{env.resourceGroupName}}
        echo ${{env.resourceGroupName1}}
-       echo ${{env.resourceGroupName2}}
       shell: pwsh
