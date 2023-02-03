@@ -29,7 +29,8 @@ jobs:
         echo $myjsonfile
         echo $myjsonfile.PortNumber     
         echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
-        echo "resourceGroupName1=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
+        export resourceGroupName1=$myjsonfile.resourceGroupName
+        echo "::set-env name=resourceGroupName1::$resourceGroupName1"
         echo "flag set to true"
       shell: pwsh
 
@@ -40,4 +41,5 @@ jobs:
        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
        echo "my resourceGroupName: "
        echo ${{env.resourceGroupName}}
+       echo ${{env.resourceGroupName1}}
       shell: pwsh
