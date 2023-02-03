@@ -11,9 +11,9 @@ env:
 
 jobs: 
     
-    job1: 
-      name: 'ProvidersAndExtensions'
-        runs-on: windows-latest
+  job1: 
+    name: 'ProvidersAndExtensions'
+      runs-on: windows-latest
       
 
       steps:
