@@ -18,24 +18,17 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v1
 
+    
+    # Read the parameters file
+    - name: newSetVarFromJsonFileValue
+      run: |
+        $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
+        echo $myjsonfile
+        echo $myjsonfile.PortNumber       
+      shell: pwsh
+
     # Read the parameters file
     - name: setVarFromJsonFileValue
       run: |
-       echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)"
-       echo "resourceGroupName=##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" >> $GITHUB_ENV
-       echo $resourceGroupName
-       echo "resourceGroupName =" ${{resourceGroupName}}
-       
+       echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
       shell: bash
-
-    - name: printValueFromJsonFileValue
-      run: |
-       echo "resourceGroupName :"  $(resourceGroupName)
-      shell: bash
-
-
-    - name: newWayReadingFromJsonFileValue
-      run: |
-        echo "MY_JSON_FILE=$(jq -c . < globalparameters.json)" >> $GITHUB_ENV
-        echo '${{ fromJson(env.MY_JSON_FILE).resourceGroupName }}'
-        echo '${{ fromJson(env.MY_JSON_FILE).dataControllername }}'
