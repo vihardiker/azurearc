@@ -21,6 +21,7 @@ jobs:
     
     # Read the parameters file
     - name: newSetVarFromJsonFileValue
+      id: step_one
       env:
         resourceGroupName: ""
       run: |
@@ -33,9 +34,10 @@ jobs:
 
     # Read the parameters file
     - name: setVarFromJsonFileValue
+      id: step_two
       run: |
        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
        echo "my resourceGroupName: "
        echo ${{ env.resourceGroupName }}
        echo "action state :" ${{ env.action_state }}
-      shell: bash
+      
