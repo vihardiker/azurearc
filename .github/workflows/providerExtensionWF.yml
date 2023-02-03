@@ -29,10 +29,12 @@ jobs:
       run: |
         $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
         echo $myjsonfile
-        echo $myjsonfile.PortNumber   
-        echo "resourceGroupName2=$($myjsonfile.resourceGroupName)" >> $GITHUB_ENV  
+        echo "my port number: " $myjsonfile.PortNumber   
+        echo "resourceGroupName2=$($myjsonfile.resourceGroupName)" >> $GITHUB_ENV
         echo "::set-env name=resourceGroupName1::$($myjsonfile.resourceGroupName)"
       shell: pwsh
+      env:
+        resourceGroupName2: $($myjsonfile.resourceGroupName)
 
     # Read the parameters file
     - name: setVarFromJsonFileValue
