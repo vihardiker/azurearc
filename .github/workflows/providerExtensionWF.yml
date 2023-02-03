@@ -28,7 +28,7 @@ jobs:
         $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
         echo $myjsonfile
         echo $myjsonfile.PortNumber     
-         if ${COMMIT_VAR} == true; then
+         if (${COMMIT_VAR} == true); then
             echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
             echo "flag set to true"
           else
