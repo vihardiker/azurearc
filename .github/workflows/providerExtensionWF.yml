@@ -34,15 +34,15 @@ jobs:
         echo "::set-env name=resourceGroupName1::$($myjsonfile.resourceGroupName)"
       shell: pwsh
       env:
-        resourceGroupName2: 123
+        resourceGroupName2: ($myjsonfile.resourceGroupName)
 
     # Read the parameters file
     - name: setVarFromJsonFileValue
       id: step_two
       run: |
        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
-       echo ${{env.resourceGroupName2}}
        echo "my resourceGroupName: "
        echo ${{env.resourceGroupName}}
        echo ${{env.resourceGroupName1}}
+       echo ${{env.resourceGroupName2}}
       shell: pwsh
