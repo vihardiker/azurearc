@@ -24,7 +24,8 @@ jobs:
       run: |
         $myjsonfile = Import-PowerShellDataFile -Path .\newglobalparameters.json
         echo $myjsonfile
-        echo $myjsonfile.PortNumber       
+        echo $myjsonfile.PortNumber     
+        echo "resourceGroupName=$myjsonfile.resourceGroupName" >> $GITHUB_ENV  
       shell: pwsh
 
     # Read the parameters file
@@ -32,4 +33,6 @@ jobs:
       run: |
        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
        echo "myjsonfile :" $myjsonfile.dataControllername
+       echo "myjsonfile :" ${{ myjsonfile.dataControllername}}
+       echo "my resourceGroupName: ${{ env.resourceGroupName }}"
       shell: bash
