@@ -10,9 +10,9 @@ env:
   resourceGroupName: xyz
 
 jobs:
-  id: Job1
-  ProvidersAndExtensions:
-    runs-on: windows-latest
+  job1: 
+    name: 'ProvidersAndExtensions'
+      runs-on: windows-latest
     
 
     steps:
