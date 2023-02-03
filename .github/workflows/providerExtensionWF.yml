@@ -41,7 +41,7 @@ jobs:
       id: step_two
       run: |
        echo "##vso[task.setvariable variable=resourceGroupName;]$(jq .resourceGroupName globalparameters.json)" 
-        echo ${{env.resourceGroupName2}}
+       echo ${{env.resourceGroupName2}}
        echo "my resourceGroupName: "
        echo ${{env.resourceGroupName}}
        echo ${{env.resourceGroupName1}}
