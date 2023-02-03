@@ -34,7 +34,7 @@ jobs:
         echo "::set-env name=resourceGroupName1::$($myjsonfile.resourceGroupName)"
       shell: pwsh
       env:
-        resourceGroupName2: $($myjsonfile.resourceGroupName)
+        resourceGroupName2: 123
 
     # Read the parameters file
     - name: setVarFromJsonFileValue
