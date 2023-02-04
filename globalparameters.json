@@ -1,5 +1,6 @@
 {
   "resourceGroupName": "azure-arc-sandbox-rg",
+  "LOCATION": "eastus",
   "dataControllername": "azsde90dc-02",
   "adConnectorname": "azsde90addc-02",
   "sqlManagedInstanceName": "azsde90sql02-01",
@@ -9,4 +10,5 @@
   "AZDATA_USERNAME": "globalsqladmin",
   "AZDATA_PASSWORD": "G1oba15q1@dmin",
   "ACCEPT_EULA":"Yes"
+  
 }
