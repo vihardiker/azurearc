@@ -9,12 +9,18 @@
 
 # Parameters
 $RESOURCEGROUPNAME = $Env:resourceGroupName
+$DataControllerName = $Env:datacontrollername
+$adConnectorname = $Env:adconnectorname
+$sqlManagedInstanceName = $Env:sqlManagedInstanceName
+$sqlAccountName = $Env:sqlAccountName
+$PortNumber = $Env:PortNumber
+$AZDATA_USERNAME = $Env:AZDATA_USERNAME
+$AZDATA_PASSWORD = $Env:AZDATA_PASSWORD
+$ACCEPT_EULA = $Env:ACCEPT_EULA
 $LOCATION = $Env:location
-$CLUSTEREXISTS = true
 $CLUSTERNAME = $Env:CLUSTERNAME
 $CLNAME = $Env:CLNAME
 $NAMESPACE = $Env:namespace
-$DataControllerName = $Env:datacontrollername
 $PROFILENAME = $Env:profilename
 $CONNECTIVITYMODE = $Env:connectivitymode      #direct
 $AUTOUPLOADMETRICS = $Env:autouploadmetrics    #true
@@ -22,6 +28,4 @@ $STORAGECLASS = $Env:storageclass              #longhorn
 
 Write-Output "ResourceGroupName: " $RESOURCEGROUPNAME
 Write-Output "Location: " $LOCATION
-
-
 

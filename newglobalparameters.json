@@ -5,7 +5,6 @@ $params - @{
   sqlManagedInstanceName = "azsde90sql02-01"
   sqlAccountName = "azsde90sql02-1"
   PortNumber = "1433"
-  CustomLocationName = "azsde90cusloc-02"
   AZDATA_USERNAME = "globalsqladmin"
   AZDATA_PASSWORD = "G1oba15q1@dmin"
   ACCEPT_EULA ="Yes"
@@ -13,4 +12,8 @@ $params - @{
   CLUSTERNAME ="labaks"
   CLNAME = "mylocation"
   NAMESPACE = "myNameSpace"
+  PROFILENAME = "E:\K8ControlFile"
+  CONNECTIVITYMODE = "direct"
+  AUTOUPLOADMETRICS = "true"
+  STORAGECLASS = "longhorn"
 }
