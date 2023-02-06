@@ -27,5 +27,19 @@ $AUTOUPLOADMETRICS = $Env:autouploadmetrics    #true
 $STORAGECLASS = $Env:storageclass              #longhorn
 
 Write-Output "ResourceGroupName: " $RESOURCEGROUPNAME
+Write-Output "DataControllerName: " $DataControllerName
+Write-Output "adConnectorname: " $adConnectorname
+Write-Output "sqlManagedInstanceName: " $sqlManagedInstanceName
+Write-Output "sqlAccountName: " $sqlAccountName
+Write-Output "PortNumber: " $PortNumber
+Write-Output "AZDATA_USERNAME: " $AZDATA_USERNAME
+Write-Output "AZDATA_PASSWORD: " $AZDATA_PASSWORD
+Write-Output "ACCEPT_EULA: " $ACCEPT_EULA
 Write-Output "Location: " $LOCATION
-
+Write-Output "CLUSTERNAME: " $CLUSTERNAME
+Write-Output "CLNAME: " $CLNAME
+Write-Output "NAMESPACE: " $NAMESPACE
+Write-Output "PROFILENAME: " $PROFILENAME
+Write-Output "CONNECTIVITYMODE: " $CONNECTIVITYMODE
+Write-Output "AUTOUPLOADMETRICS: " $AUTOUPLOADMETRICS
+Write-Output "STORAGECLASS: " $STORAGECLASS
