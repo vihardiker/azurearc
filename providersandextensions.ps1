@@ -82,6 +82,7 @@ Write-Output "Done Checking for and creating RG"
 #########################################################
 Write-Output "Connecting to cluster"
 if ($CLUSTEREXISTS -eq 'true') {
+    az config set extension.use_dynamic_install=yes_without_prompt 
     az aks get-credentials --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME
 }
 Write-Output "Done Connecting to cluster"
@@ -94,6 +95,7 @@ Write-Output "Enable cluster for ARC"
 #$SPNOBJECTID = (az ad sp show --id $SPNID --query id -o tsv)
 $SPNOBJECTID = $SPNID
 Write-Output "**************** SPNOBJECTID ******************: " $SPNOBJECTID
+az config set extension.use_dynamic_install=yes_without_prompt 
 az connectedk8s connect --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME --custom-locations-oid $SPNOBJECTID
 Write-Output "Done Enabling cluster for ARC"
 
@@ -103,6 +105,7 @@ Write-Output "Done Enabling cluster for ARC"
 # Enable Custom Location
 ########################
 Write-Output "Enable Custom Location"
+az config set extension.use_dynamic_install=yes_without_prompt 
 az connectedk8s enable-features -n $CLUSTERNAME -g $RESOURCEGROUPNAME --features cluster-connect custom-locations --custom-locations-oid $SPNOBJECTID
 Write-Output "Done Enabling Custom Location"
 
@@ -110,6 +113,7 @@ Write-Output "Done Enabling Custom Location"
 # Create Azure Data Extension
 #############################
 Write-Output "Create Azure Data Extention"
+az config set extension.use_dynamic_install=yes_without_prompt 
 az k8s-extension create --cluster-name $CLUSTERNAME --resource-group $RESOURCEGROUPNAME --name $ADSEXTENSIONNAME --cluster-type connectedClusters --extension-type microsoft.arcdataservices --auto-upgrade false --scope cluster --release-namespace $NAMESPACE --config Microsoft.CustomLocation.ServiceAccount=sa-arc-bootstrapper
 Write-Output "Done Creating Azure Data Extension"
 
@@ -119,6 +123,7 @@ Write-Output "Done Creating Azure Data Extension"
 # Create Custom Location
 ########################
 Write-Output "Create Custom Location"
+az config set extension.use_dynamic_install=yes_without_prompt 
 $hostClusterId=(az connectedk8s show --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME --query id -o tsv)
 $extensionId=(az k8s-extension show --resource-group $RESOURCEGROUPNAME --cluster-name $CLUSTERNAME --cluster-type connectedClusters --name $ADSEXTENSIONNAME --query id -o tsv)
 az customlocation create --resource-group $RESOURCEGROUPNAME --name $CLNAME --namespace $NAMESPACE --host-resource-id $hostClusterId --cluster-extension-ids $extensionId
@@ -128,6 +133,7 @@ Write-Output "Done Creating Custom Location"
 # Create Data Controller
 ########################
 Write-Output "Create Data Controller"
+az config set extension.use_dynamic_install=yes_without_prompt 
 az arcdata dc create --name $DATACONTROLLERNAME --resource-group $RESOURCEGROUPNAME --location $LOCATION --connectivity-mode $CONNECTIVITYMODE --auto-upload-metrics $AUTOUPLOADMETRICS --custom-location $CLNAME --storage-class $STORAGECLASS #--profile-name $PROFILENAME
 Write-Output "Done Creating Data Controller"
 
