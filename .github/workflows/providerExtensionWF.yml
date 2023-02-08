@@ -76,5 +76,5 @@ jobs:
         ARC_AZURE_SUBSCRIPTION_ID: ${{ secrets.ARC_AZURE_SUBSCRIPTION_ID }}
         AZDATA_USERNAME: ${{ secrets.AZDATA_USERNAME }}
         AZDATA_PASSWORD: ${{ secrets.AZDATA_PASSWORD }}
-      run: .\test.ps1
+      run: .\providersandextensions.ps1
       shell: pwsh
