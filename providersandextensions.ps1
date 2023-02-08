@@ -43,29 +43,29 @@ Write-Output "Done Setting Azure Subscription"
 ################
 # Get az version
 ################
-Write-Output "Checking Az Version"
-az --version 
-Write-Output "Done Checking Az Version"
+#Write-Output "Checking Az Version"
+# az --version 
+#Write-Output "Done Checking Az Version"
 
 #####################################
 # Register the Arc resource providers
 #####################################
-Write-Output "Registering Providers"
-  az provider register --namespace Microsoft.Kubernetes
-  az provider register --namespace Microsoft.KubernetesConfiguration
-  az provider register --namespace Microsoft.ExtendedLocation
-Write-Output "Done Registering Providers"
+#Write-Output "Registering Providers"
+#  az provider register --namespace Microsoft.Kubernetes
+#  az provider register --namespace Microsoft.KubernetesConfiguration
+#  az provider register --namespace Microsoft.ExtendedLocation
+#Write-Output "Done Registering Providers"
 
 ################################
 #  Install the az CLI extensions
 ################################
-Write-Output "Adding Extensions"
-  az extension add --name k8s-extension
-  az extension add --name connectedk8s
-  az extension add --name k8s-configuration
-  az extension add --name customlocation
-  az extension add --name arcdata
-Write-Output "Done Adding Extensions"
+#Write-Output "Adding Extensions"
+#  az extension add --name k8s-extension
+#  az extension add --name connectedk8s
+#  az extension add --name k8s-configuration
+#  az extension add --name customlocation
+#  az extension add --name arcdata
+#Write-Output "Done Adding Extensions"
 
 ###################################################################################
 # Check to see if the Resource Group exists or not. If it does not exist create one
@@ -91,7 +91,9 @@ Write-Output "Done Connecting to cluster"
 #######################################
 Write-Output "Enable cluster for ARC"
 #az connectedk8s connect --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME
-$SPNOBJECTID = (az ad sp show --id $SPNID --query id -o tsv)
+#$SPNOBJECTID = (az ad sp show --id $SPNID --query id -o tsv)
+$SPNOBJECTID = $SPNID
+Write-Output "**************** SPNOBJECTID ******************: " $SPNOBJECTID
 az connectedk8s connect --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME --custom-locations-oid $SPNOBJECTID
 Write-Output "Done Enabling cluster for ARC"
 

@@ -11,5 +11,5 @@ AUTOUPLOADMETRICS = "false"
 AUTOUPLOADLOGS = "false"
 STORAGECLASS = "azure-arc-aks-premium-storage"
 ADSEXTENSIONNAME = "vhadsext"
-SPNID = "bc313c14-388c-4e7d-a58e-70017303ee3b"
+SPNID = "dd598cbf-6b4a-4415-8f5c-9346f28b5303"
 }
