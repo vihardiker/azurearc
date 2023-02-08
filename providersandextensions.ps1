@@ -8,17 +8,23 @@
 #############################################################
 
 # Parameters
-$RESOURCEGROUPNAME = $Env:resourceGroup
-$LOCATION = $Env:location
-$CLUSTEREXISTS = true
+
+$RESOURCEGROUPNAME = $Env:RESOURCEGROUPNAME
+$DATACONTROLLERNAME = $Env:DATACONTROLLERNAME
+$CLUSTEREXISTS = $Env:CLUSTEREXISTS            #true
+$LOCATION = $Env:LOCATION
 $CLUSTERNAME = $Env:CLUSTERNAME
 $CLNAME = $Env:CLNAME
-$NAMESPACE = $Env:namespace
-$DataControllerName = $Env:datacontrollername
-$PROFILENAME = $Env:profilename
-$CONNECTIVITYMODE = $Env:connectivitymode      #direct
-$AUTOUPLOADMETRICS = $Env:autouploadmetrics    #true
-$STORAGECLASS = $Env:storageclass              #longhorn
+$NAMESPACE = $Env:NAMESPACE                    #should be lowercase less than 63 alpha numeric characters
+$CONNECTIVITYMODE = $Env:CONNECTIVITYMODE      #direct
+$AUTOUPLOADMETRICS = $Env:AUTOUPLOADMETRICS    #false
+$AUTOUPLOADLOGS = $Env:AUTOUPLOADLOGS          #false
+$STORAGECLASS = $Env:STORAGECLASS              #
+$ADSEXTENSIONNAME = $Env:ADSEXTENSIONNAME
+$SPNID = $Env:SPNID
+
+
+
 
 ########################################################################
 # Login to Azure using Service Principal credentials from Github Secrets
@@ -84,22 +90,42 @@ Write-Output "Done Connecting to cluster"
 # ARC Services - Enable Cluster for ARC
 #######################################
 Write-Output "Enable cluster for ARC"
-az connectedk8s connect --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME
+#az connectedk8s connect --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME
+$SPNOBJECTID = (az ad sp show --id $SPNID --query id -o tsv)
+az connectedk8s connect --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME --custom-locations-oid $SPNOBJECTID
 Write-Output "Done Enabling cluster for ARC"
+
+
+
+########################
+# Enable Custom Location
+########################
+Write-Output "Enable Custom Location"
+az connectedk8s enable-features -n $CLUSTERNAME -g $RESOURCEGROUPNAME --features cluster-connect custom-locations --custom-locations-oid $SPNOBJECTID
+Write-Output "Done Enabling Custom Location"
+
+#############################
+# Create Azure Data Extension
+#############################
+Write-Output "Create Azure Data Extention"
+az k8s-extension create --cluster-name $CLUSTERNAME --resource-group $RESOURCEGROUPNAME --name $ADSEXTENSIONNAME --cluster-type connectedClusters --extension-type microsoft.arcdataservices --auto-upgrade false --scope cluster --release-namespace $NAMESPACE --config Microsoft.CustomLocation.ServiceAccount=sa-arc-bootstrapper
+Write-Output "Done Creating Azure Data Extension"
+
+
 
 ########################
 # Create Custom Location
 ########################
 Write-Output "Create Custom Location"
-$ENV:hostClusterId=(az connectedk8s show --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME --query id -o tsv)
-$ENV:extensionId=(az k8s-extension show --resource-group $RESOURCEGROUPNAME --cluster-name $CLUSTERNAME --cluster-type connectedClusters --name $adsExtensionName --query id -o tsv)
-az customlocation create --resource-group $RESOURCEGROUPNAME --name $CLNAME --namespace $NAMESPACE --host-resource-id $ENV:hostClusterId --cluster-extension-ids $ENV:extensionId
+$hostClusterId=(az connectedk8s show --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME --query id -o tsv)
+$extensionId=(az k8s-extension show --resource-group $RESOURCEGROUPNAME --cluster-name $CLUSTERNAME --cluster-type connectedClusters --name $ADSEXTENSIONNAME --query id -o tsv)
+az customlocation create --resource-group $RESOURCEGROUPNAME --name $CLNAME --namespace $NAMESPACE --host-resource-id $hostClusterId --cluster-extension-ids $extensionId
 Write-Output "Done Creating Custom Location"
 
 ########################
 # Create Data Controller
 ########################
 Write-Output "Create Data Controller"
-az arcdata dc create --name $DataControllerName --resource-group $RESOURCEGROUPNAME --location $LOCATION --connectivity-mode $CONNECTIVITYMODE --profile-name $PROFILENAME --auto-upload-metrics $AUTOUPLOADMETRICS --custom-location $CLNAME --storage-class $STORAGECLASS 
+az arcdata dc create --name $DATACONTROLLERNAME --resource-group $RESOURCEGROUPNAME --location $LOCATION --connectivity-mode $CONNECTIVITYMODE --auto-upload-metrics $AUTOUPLOADMETRICS --custom-location $CLNAME --storage-class $STORAGECLASS #--profile-name $PROFILENAME
 Write-Output "Done Creating Data Controller"
 

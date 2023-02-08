@@ -39,7 +39,7 @@ if ($ISTHISADEVINSTANCE -eq 'true') {
     az sql mi-arc create --name $SQLMINAME --ad-connector-name $ADCONNECTORNAME --ad-account-name $SQLACCOUNTNAME --primary-dns-name $PRIMARYDNSNAME --primary-port-number $PORTNUMBER --custom-location $CLNAME --resource-group $RESOURCEGROUPNAME --dev
 }
 else {
-    az sql mi-arc create --name $SQLMINAME --ad-connector-name $ADCONNECTORNAME --ad-account-name $SQLACCOUNTNAME --primary-dns-name $PRIMARYDNSNAME --primary-port-number $PORTNUMBER --custom-location $CLNAME --resource-group $RESOURCEGROUPNAME
+    az sql mi-arc create --name $SQLMINAME --ad-connector-name $ADCONNECTORNAME --ad-account-name $SQLACCOUNTNAME --primary-dns-name $PRIMARYDNSNAME --primary-port-number $PORTNUMBER --custom-location $CLNAME --resource-group $RESOURCEGROUPNAME --tier $SQLMITIER
 }
 Write-Output "Done Creating SQL MI"
 
