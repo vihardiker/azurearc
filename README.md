@@ -24,10 +24,29 @@
 |`STORAGECLASS`|`The storage class to be used for all data and logs persistent volumes for all data controller pods that require them.`|`managed-premium, or other possible values`|
 |`ADSEXTENSIONNAME`|`Name of the extension instance`|`vhadsext, or other possible values`|
 |`SPNID`|`OID of 'custom-locations' app`|`e14b073a-ef29-47af-9386-29ad771ed6e8, this is the id for JD Tenant`|
+|`AZURE_SUBSCRIPTION_ID`|`Azure Subscription ID used to deploy resources`|`xxxx, or other possible values`|
 
-<u>DO NOT CHANGE THE VALUE OF SPNID ABOVE</u>
+
+ <span style="color:red"><u>DO NOT CHANGE THE VALUE OF SPNID ABOVE</u></span>
+
+## <u>Secrets</u>
+
+Github allows to use secrets in a pipeline workflow. The secrets are username, password, service principal etc. Here are the details of the secrets used in the pipeline workflow:
+
+## <span style="color:red"><u>Important Note</u></span>
+
+Keep a note of the secrets, once they are saved in github, you can only update it, however, cannot retrieve the value.
+
+|Secret Name|Description|Typical Values|
+|:--|:--|:--|
+|`ARC_SP_CLIENT_ID`|`Client ID of the Service Principal`|`This is an auto generated value`|
+|`ARC_SP_CLIENT_SECRET`|`Client Secret of the Service Principal`|`This is an auto generated value`|
+|`ARC_SP_TENANT_ID`|`Tenant ID`|`This is an auto generated value`|
+|`AZDATA_USERNAME`|`Username to log into Logs and Metrics Dashborad`|`sqlmiadmin, or other possible value`|
+|`AZDATA_PASSWORD`|`Password to log into Logs and Metrics Dashborad`|`@@Password123@, or other possible value`|
 
 
 ## <u>Additional resources</u>
 
 - [Enable custom locations on your cluster](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster)
+- [Github Action Secrets](https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28#get-an-organization-secret)
