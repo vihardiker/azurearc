@@ -1,7 +1,7 @@
 $params - @{
 RESOURCEGROUPNAME = "rg-vh-akslab2"
 DATACONTROLLERNAME = "akslab2dc"
-CLUSTEREXISTS ="false"
+CLUSTEREXISTS ="true"
 LOCATION = "SouthCentralUS"
 CLUSTERNAME ="akslab2"
 CLNAME = "labcusloc"

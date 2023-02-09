@@ -12,6 +12,7 @@ env:
 jobs:
   
   ProvidersAndExtensions:
+    if: ${{ !contains(github.event.head_commit.message, 'vivek') }}
     runs-on: windows-latest
     
 
