@@ -87,7 +87,7 @@ if ($CLUSTEREXISTS -eq 'true') {
     az aks get-credentials --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME
 }
 else {
-    Write-Error 'The Cluster does not exist' -ErrorAction Stop
+    Write-Error 'The Cluster does not exist, stopping the script/workflow' -ErrorAction Stop
 }
 Write-Output "Done Connecting to cluster"
 
