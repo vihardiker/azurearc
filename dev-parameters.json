@@ -1,7 +1,7 @@
 $params - @{
 RESOURCEGROUPNAME = "rg-vh-akslab2"
 DATACONTROLLERNAME = "akslab2dc"
-CLUSTEREXISTS ="true"
+CLUSTEREXISTS ="false"
 LOCATION = "SouthCentralUS"
 CLUSTERNAME ="akslab2"
 CLNAME = "labcusloc"
@@ -12,5 +12,5 @@ AUTOUPLOADLOGS = "false"
 PROFILENAME = "azure-arc-aks-premium-storage"
 STORAGECLASS ="managed-premium"
 ADSEXTENSIONNAME = "vhadsext"
-SPNID = "dd598cbf-6b4a-4415-8f5c-9346f28b5303"
+SPNID = "e14b073a-ef29-47af-9386-29ad771ed6e8"
 }

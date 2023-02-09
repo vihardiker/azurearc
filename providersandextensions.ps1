@@ -86,6 +86,9 @@ if ($CLUSTEREXISTS -eq 'true') {
     az config set extension.use_dynamic_install=yes_without_prompt 
     az aks get-credentials --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME
 }
+else {
+    Write-Error 'The Cluster does not exist' -ErrorAction Stop
+}
 Write-Output "Done Connecting to cluster"
 
 #######################################
@@ -99,8 +102,6 @@ Write-Output "**************** SPNOBJECTID ******************: " $SPNOBJECTID
 az config set extension.use_dynamic_install=yes_without_prompt 
 az connectedk8s connect --resource-group $RESOURCEGROUPNAME --name $CLUSTERNAME --custom-locations-oid $SPNOBJECTID --location $LOCATION
 Write-Output "Done Enabling cluster for ARC"
-
-
 
 ########################
 # Enable Custom Location
@@ -117,8 +118,6 @@ Write-Output "Create Azure Data Extention"
 az config set extension.use_dynamic_install=yes_without_prompt 
 az k8s-extension create --cluster-name $CLUSTERNAME --resource-group $RESOURCEGROUPNAME --name $ADSEXTENSIONNAME --cluster-type connectedClusters --extension-type microsoft.arcdataservices --auto-upgrade false --scope cluster --release-namespace $NAMESPACE --config Microsoft.CustomLocation.ServiceAccount=sa-arc-bootstrapper
 Write-Output "Done Creating Azure Data Extension"
-
-
 
 ########################
 # Create Custom Location
