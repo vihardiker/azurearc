@@ -12,5 +12,6 @@ AUTOUPLOADLOGS = "false"
 PROFILENAME = "azure-arc-aks-premium-storage"
 STORAGECLASS ="managed-premium"
 ADSEXTENSIONNAME = "vhadsext"
-SPNID = "e14b073a-ef29-47af-9386-29ad771ed6e8"
+SPNID = "e14b073a-ef29-47af-9386-29ad771ed6e8"  
+AZURE_SUBSCRIPTION_ID = "xxxxxxxxxxx"
 }

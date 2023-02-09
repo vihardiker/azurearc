@@ -23,6 +23,7 @@ $PROFILENAME = $Env:PROFILENAME              #
 $STORAGECLASS = $Env:STORAGECLASS              #
 $ADSEXTENSIONNAME = $Env:ADSEXTENSIONNAME
 $SPNID = $Env:SPNID
+$AZURE_SUBSCRIPTION_ID = $Env:AZURE_SUBSCRIPTION_ID
 
 
 
@@ -38,7 +39,7 @@ Write-Output "Done logging into Azure"
 # Select Azure subscription
 ###########################
 Write-Output "Setting Azure Subscription"
-az account set --subscription $Env:ARC_AZURE_SUBSCRIPTION_ID
+az account set --subscription $AZURE_SUBSCRIPTION_ID   # $Env:ARC_AZURE_SUBSCRIPTION_ID
 Write-Output "Done Setting Azure Subscription"
 
 ################
@@ -71,12 +72,12 @@ Write-Output "Done Setting Azure Subscription"
 ###################################################################################
 # Check to see if the Resource Group exists or not. If it does not exist create one
 ###################################################################################
-Write-Output "Checking for RG"
-$rsgExists = az group exists --name $RESOURCEGROUPNAME
-if ($rsgExists -eq 'false') {
-    az group create --name $RESOURCEGROUPNAME --location $LOCATION
-}
-Write-Output "Done Checking for and creating RG"
+#Write-Output "Checking for RG"
+#$rsgExists = az group exists --name $RESOURCEGROUPNAME
+#if ($rsgExists -eq 'false') {
+#    az group create --name $RESOURCEGROUPNAME --location $LOCATION
+#}
+#Write-Output "Done Checking for and creating RG"
 
 #########################################################
 # Once a new cluster is available, connect to the cluster

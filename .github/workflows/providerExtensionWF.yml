@@ -44,6 +44,7 @@ jobs:
         echo "::set-env name=STORAGECLASS::$($myjsonfile.STORAGECLASS)"
         echo "::set-env name=ADSEXTENSIONNAME::$($myjsonfile.ADSEXTENSIONNAME)"
         echo "::set-env name=SPNID::$($myjsonfile.SPNID)"
+        echo "::set-env name=AZURE_SUBSCRIPTION_ID::$($myjsonfile.AZURE_SUBSCRIPTION_ID)"
         
         
       shell: pwsh
@@ -68,6 +69,7 @@ jobs:
        echo ${{env.STORAGECLASS}}
        echo ${{env.ADSEXTENSIONNAME}}
        echo ${{env.SPNID}}
+       echo ${{env.AZURE_SUBSCRIPTION_ID}}
       shell: pwsh
 
     - name: RunScriptFromRepo
@@ -75,7 +77,6 @@ jobs:
         ARC_SP_CLIENT_ID: ${{ secrets.ARC_SP_CLIENT_ID }}
         ARC_SP_CLIENT_SECRET: ${{ secrets.ARC_SP_CLIENT_SECRET }}
         ARC_SP_TENANT_ID: ${{ secrets.ARC_SP_TENANT_ID }}
-        ARC_AZURE_SUBSCRIPTION_ID: ${{ secrets.ARC_AZURE_SUBSCRIPTION_ID }}
         AZDATA_USERNAME: ${{ secrets.AZDATA_USERNAME }}
         AZDATA_PASSWORD: ${{ secrets.AZDATA_PASSWORD }}
       run: .\providersandextensions.ps1
