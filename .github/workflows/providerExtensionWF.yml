@@ -39,6 +39,7 @@ jobs:
         echo "::set-env name=CONNECTIVITYMODE::$($myjsonfile.CONNECTIVITYMODE)"
         echo "::set-env name=AUTOUPLOADMETRICS::$($myjsonfile.AUTOUPLOADMETRICS)"
         echo "::set-env name=AUTOUPLOADLOGS::$($myjsonfile.AUTOUPLOADLOGS)"
+        echo "::set-env name=PROFILENAME::$($myjsonfile.PROFILENAME)"
         echo "::set-env name=STORAGECLASS::$($myjsonfile.STORAGECLASS)"
         echo "::set-env name=ADSEXTENSIONNAME::$($myjsonfile.ADSEXTENSIONNAME)"
         echo "::set-env name=SPNID::$($myjsonfile.SPNID)"
@@ -63,6 +64,7 @@ jobs:
        echo ${{env.CONNECTIVITYMODE}}
        echo ${{env.AUTOUPLOADMETRICS}}
        echo ${{env.AUTOUPLOADLOGS}}
+       echo ${{env.PROFILENAME}}
        echo ${{env.STORAGECLASS}}
        echo ${{env.ADSEXTENSIONNAME}}
        echo ${{env.SPNID}}
