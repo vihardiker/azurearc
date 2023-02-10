@@ -31,7 +31,7 @@
 
 ## <u>Secrets</u>
 
-Github allows to use secrets in a pipeline workflow. The secrets are username, password, service principal etc. Here are the details of the secrets used in the pipeline workflow:
+Github allows to use secrets in a pipeline workflow. The secrets are Username, Password, Service Principal etc. The Service Principal used has Contributor access on the Resource Group. Here are the details of the secrets used in the pipeline workflow:
 
 ## <span style="color:red"><u>Important Note</u></span>
 
