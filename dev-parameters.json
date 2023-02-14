@@ -1,9 +1,9 @@
 $params - @{
-RESOURCEGROUPNAME = "rg-vh-akslab2"
+RESOURCEGROUPNAME = "rg-aks-jd"
 DATACONTROLLERNAME = "akslab2dc"
 CLUSTEREXISTS ="true"
 LOCATION = "SouthCentralUS"
-CLUSTERNAME ="akslab2"
+CLUSTERNAME ="aks-lab-jd"
 CLNAME = "labcusloc"
 NAMESPACE = "myarcns"
 CONNECTIVITYMODE = "direct"
@@ -12,6 +12,7 @@ AUTOUPLOADLOGS = "false"
 PROFILENAME = "azure-arc-aks-premium-storage"
 STORAGECLASS ="managed-premium"
 ADSEXTENSIONNAME = "vhadsext"
-SPNID = "e14b073a-ef29-47af-9386-29ad771ed6e8"  
-AZURE_SUBSCRIPTION_ID = "xxxxxxxxxxx"
+SPNID = "dd598cbf-6b4a-4415-8f5c-9346f28b5303"  
+AZURE_SUBSCRIPTION_ID = "2a80b5c0-1f1c-4ed2-845d-90eed0707781"
 }
+
